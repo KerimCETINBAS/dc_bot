@@ -5,9 +5,10 @@ export default class Rol extends Controller {
  
 
     static async yarat(msg, name, channel_id, message_id, groupType) {
-        if (!await msg.guild.members.cache.find( x => x.id === msg.author.id).permissions.has(['ADMINISTRATOR'])) return await msg.reply('Yetkiniz yok');
+      
         
         try {
+            if (!await msg.guild.members.cache.find( x => x.id === msg.author.id).permissions.has(['ADMINISTRATOR'])) return await msg.reply('Yetkiniz yok');
             const Role = {
                 name,
                 guild: await msg.guild.id,
@@ -18,10 +19,10 @@ export default class Rol extends Controller {
             const createRole = await ReactionRole.newRoleGroup(Role)
             await msg.reply(createRole)
             setTimeout(async () => {
-               await reply.delete() 
+               await msg.reply.delete() 
             }, 2000)
         } catch (error) {
-            reply = msg.reply(`Rol grubu "${name}" zaten mevcut`)
+            msg.reply(`Rol grubu "${name}" zaten mevcut`)
         }
     }
 

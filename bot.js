@@ -7,9 +7,15 @@ config()
 const prefix = process.env.BOT_PREFIX
 const client = new Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] })
 
+const express = require('express');
+const app = express();
+const port = 3000;
+
+app.get('/', (req, res) => res.send('Hello World!'));
 
 
 mongoose.connect(`${process.env.DB_URI}`,{useNewUrlParser: true, useFindAndModify : false, useCreateIndex : true, useUnifiedTopology: true })
+.catch(e => console.error(e))
 
 mongoose.connection.on('error', console.error.bind(console, 'connection error'))
 mongoose.connection.once('open', function() {console.info('db connected') })
@@ -20,8 +26,10 @@ client.on('ready', () => {
 
 
 client.on('message', async msg => {
-    if (msg.content.startsWith(prefix) && !msg.author.bot) Router(msg)
-    else return
+  try {
+     if (msg.content.startsWith(prefix) && !msg.author.bot) Router(msg)
+      else return
+  } catch(e) {}
 })      
 
 client.on('messageReactionAdd', (react, user) => ReactRole(react, user))

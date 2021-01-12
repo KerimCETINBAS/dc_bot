@@ -3,11 +3,12 @@ import ReactRoleModel from '../models/reaction_role.model'
 import SingleGroup from '../helpers/single.rolegroup'
 
 export default async (react, user) => {
-    const guild = await react.message.guild.id
-    const channel = await react.message.channel.toString()
-    const message = await react.message.id
+
     
     try {
+        const guild = await react.message.guild.id
+        const channel = await react.message.channel.toString()
+        const message = await react.message.id
         const isRoleGroup = await ReactRoleModel.findOne({ channel: channel, guild: guild, message: message })
         if (isRoleGroup) {
             const role = await isRoleGroup.roles.find(x => {
