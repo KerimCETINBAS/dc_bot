@@ -8,7 +8,8 @@ const prefix = process.env.BOT_PREFIX
 const client = new Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] })
 
 
-mongoose.connect(`mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`,{useNewUrlParser: true, useFindAndModify : false, useCreateIndex : true, useUnifiedTopology: true })
+
+mongoose.connect(`${process.env.DB_URI}`,{useNewUrlParser: true, useFindAndModify : false, useCreateIndex : true, useUnifiedTopology: true })
 
 mongoose.connection.on('error', console.error.bind(console, 'connection error'))
 mongoose.connection.once('open', function() {console.info('db connected') })
