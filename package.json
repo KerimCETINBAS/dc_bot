@@ -4,7 +4,7 @@
   "description": "discord bot for kawaii guild",
   "scripts": {
     "start": "node -r esm bot.js",
-    "dev" : "nodemon -r esm bot.js"
+    "dev": "nodemon -r esm bot.js"
   },
   "main": "bot.js",
   "author": "Kerim Çetinbaş",

@@ -11,8 +11,8 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
-app.get('/', (req, res) => res.send('keppAlive'));
-
+app.get('/', (req, res) => res.end());
+app.listen(port)
 
 mongoose.connect(`${process.env.DB_URI}`,{useNewUrlParser: true, useFindAndModify : false, useCreateIndex : true, useUnifiedTopology: true })
 .catch(e => console.error(e))
