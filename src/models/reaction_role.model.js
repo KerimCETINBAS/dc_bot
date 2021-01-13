@@ -28,8 +28,10 @@ class ReactRole{
 
     static addReaction(name, guild, reactionModel) {
         return new Promise(async (resolve, reject) => {
+           try {
             this.findOne({ name: name, guild: guild }, (err, doc) => {
-                const isExist = doc.roles.some(x => x.role === reactionModel.role && x.emoji === reactionModel.emoji)
+                console.log(doc.roles)
+                const isExist = doc.roles && doc.roles.some(x => x.role === reactionModel.role && x.emoji === reactionModel.emoji)
                 if (!isExist) {
                     doc.roles.push(reactionModel)
                     doc.save()
@@ -39,6 +41,9 @@ class ReactRole{
 
           
             })
+           } catch (error) {
+               console.log(error)
+           }
         }) 
     }
 }

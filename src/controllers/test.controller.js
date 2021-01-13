@@ -1,6 +1,6 @@
 import Controller from '../helpers/controller.js'
 
-export default class Test extends Controller{
+export default class extends Controller{
 
     
     static default(msg) {

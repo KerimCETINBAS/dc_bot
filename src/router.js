@@ -8,7 +8,8 @@ export default async msg => {
  
 
     try {
-         let args = msg.content.split(prefix)[1]
+        
+        let args = msg.content.split(prefix)[1]
         args = args.trim().replace(/[\s]+/g , " ").toLowerCase().split(" ")
         
         const controller = args.shift()
@@ -16,12 +17,12 @@ export default async msg => {
         if (existsSync(`${__dirname}/controllers/${controller}.controller.js`)) {
             let Router = await import(`${__dirname}/controllers/${controller}.controller.js`)
             Router = Router.default
-            console.log(controller, action)
             await Router.Router(msg, controller, action, args)
-            await msg.delete()
+         
         } else msg.reply(`Tanınmayan komut : "${controller}" , Komutu yanlış girdiniz veya sistem tarafından tanınmıyor`)
         
 
     } catch (error) { console.error(error) }
+
 
 }

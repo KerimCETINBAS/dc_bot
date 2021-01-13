@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "description": "discord bot for kawaii guild",
   "scripts": {
-    "start": "node -r esm bot.js"
+    "start": "node -r esm bot.js",
+    "dev" : "nodemon -r esm bot.js"
   },
   "main": "bot.js",
   "author": "Kerim Çetinbaş",
@@ -15,5 +16,8 @@
     "express": "^4.17.1",
     "mongoose": "^5.11.11",
     "node": "^15.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
   }
 }

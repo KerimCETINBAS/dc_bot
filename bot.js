@@ -27,7 +27,7 @@ client.on('ready', () => {
 
 client.on('message', async msg => {
   try {
-     if (msg.content.startsWith(prefix) && !msg.author.bot) Router(msg)
+     if (msg.content.startsWith(prefix) && !msg.author.bot) await Router(msg)
       else return
   } catch(e) {}
 })      
